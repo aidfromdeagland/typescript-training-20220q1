@@ -2,15 +2,16 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import routes from './src/routes/crmRoutes';
+import dotenv  from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const { PORT, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
 // mongoose connection
 mongoose.Promise = global.Promise;
-mongoose.connect('<insert your own credentials>', {
-    useMongoClient: true
-});
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.46y9z.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`);
 
 // bodyparser setup
 app.use(bodyParser.urlencoded({ extended: true }));
