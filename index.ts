@@ -1,8 +1,8 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+import * as express from 'express';
+import * as mongoose from 'mongoose';
+import * as bodyParser from 'body-parser';
 import routes from './src/routes/crmRoutes';
-import dotenv  from 'dotenv';
+import * as dotenv  from 'dotenv';
 
 dotenv.config();
 
@@ -10,7 +10,6 @@ const app = express();
 const { PORT, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
 
 // mongoose connection
-mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.46y9z.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`);
 
 // bodyparser setup
